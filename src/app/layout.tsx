@@ -27,7 +27,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased [&_input]:focus:outline-neutral-700 [&_select]:focus:outline-neutral-700 [&_button]:focus:outline-neutral-700`}
+			>
 				<div className="mx-10">
 					<Header />
 					{children}
