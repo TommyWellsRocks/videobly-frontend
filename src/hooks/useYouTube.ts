@@ -1,9 +1,9 @@
 "use client";
 
-import { validateYouTubeLink } from "@/utils/validateYouTubeLink";
+import { isYouTubeLink } from "@/utils/isYouTubeLink";
 import { create } from "zustand";
 
-interface youtubeState {
+interface YouTubeState {
 	link: string;
 	availableFormats: string[];
 	availableResolutions: string[];
@@ -14,9 +14,11 @@ interface youtubeState {
 	setLink: (link: string) => void;
 	setFormat: (format: string) => void;
 	setResolution: (resolution: string) => void;
+	// Get
+	getPreview: () => void;
 }
 
-export const useYouTube = create<youtubeState>((set) => ({
+export const useYouTube = create<YouTubeState>((set, get) => ({
 	link: "",
 	availableFormats: [],
 	availableResolutions: [],
@@ -24,43 +26,40 @@ export const useYouTube = create<youtubeState>((set) => ({
 	format: "",
 	resolution: "",
 	// Set
-	setLink: async (link: string) => {
-		set((state) => ({ ...state, link }));
-		let errorMessage = "";
-		// Validate
-		errorMessage = validateYouTubeLink(link);
-		if (!link) {
-			set((state) => ({ ...state, errorMessage }));
-			return;
-		}
-		if (errorMessage) {
-			set((state) => ({ ...state, errorMessage }));
-			return;
-		}
-		// Clear Error Message And Get Output Options
-		set((state) => ({ ...state, errorMessage }));
+	setLink: async (link: string) => set((state) => ({ ...state, link })),
+	setFormat: (format: string) => set((state) => ({ ...state, format })),
+	setResolution: (resolution: string) => set((state) => ({ ...state, resolution })),
+	// Get
+	getPreview: async () => {
+		const link = get().link;
+		if (!link) return;
 
-		let formatOptions: string[] = [];
-		let resolutionOptions: string[] = [];
+		// Validate Link
+		const { ok, err } = isYouTubeLink(link);
+		if (!ok) {
+			set((state) => ({ ...state, errorMessage: err }));
+			return;
+		}
+
+		// Clear Previous State (Search Data)
+		set((state) => ({
+			...state,
+			availableFormats: [],
+			availableResolutions: [],
+			errorMessage: "",
+			format: "",
+			resolution: "",
+		}));
+
+		// Get Output Options
 		try {
 			const res = await fetch(`http://localhost:8000/api/v1/youtube?url=${link}`);
 			const { availableFormats, availableResolutions } = await res.json();
-			formatOptions = availableFormats;
-			resolutionOptions = availableResolutions;
+			set((state) => ({ ...state, availableFormats, availableResolutions }));
 		} catch (err: any) {
 			console.error(err);
-			errorMessage = "Error fetching formats and resolutions";
-		} finally {
-			set((state) => ({
-				...state,
-				availableFormats: formatOptions ? formatOptions : [],
-				format: formatOptions ? formatOptions[-1] : "",
-				availableResolutions: resolutionOptions ? resolutionOptions : [],
-				resolution: resolutionOptions ? resolutionOptions[-1] : "",
-				errorMessage,
-			}));
+			const errorMessage = "Error fetching formats and resolutions";
+			set((state) => ({ ...state, errorMessage }));
 		}
 	},
-	setFormat: (format: string) => set((state) => ({ ...state, format })),
-	setResolution: (resolution: string) => set((state) => ({ ...state, resolution })),
 }));

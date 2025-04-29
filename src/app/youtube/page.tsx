@@ -1,7 +1,7 @@
-import { Download } from "@/components/youtube/Download";
-import { ErrorMessage } from "@/components/youtube/ErrorMessage";
 import { VideoInput } from "@/components/youtube/VideoInput";
-import { Format, Resolution } from "@/components/youtube/VideoOptions";
+import { OutputSpecs } from "@/components/youtube/OutputSpecs";
+import { ErrorMessage } from "@/components/youtube/ErrorMessage";
+import { Download } from "@/components/youtube/Download";
 
 export default function YouTube() {
 	return (
@@ -13,11 +13,7 @@ export default function YouTube() {
 						YouTube Video URL
 					</span>
 					<VideoInput />
-					<div className="flex gap-x-5">
-						<Format />
-
-						<Resolution />
-					</div>
+					<OutputSpecs />
 					<ErrorMessage />
 				</div>
 

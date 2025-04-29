@@ -7,14 +7,16 @@ export function Download() {
 	const format = useYouTube((state) => state.format);
 	const resolution = useYouTube((state) => state.resolution);
 	const videoLink = useYouTube((state) => state.link);
-	const hasError = !!useYouTube((state) => state.errorMessage);
+	const errorMessage = useYouTube((state) => state.errorMessage);
 	const [statusMessage, setStatusMessage] = useState("");
 
 	useEffect(() => {
 		setStatusMessage("");
 	}, [videoLink]);
 
-	const downloadOutput = async () => {
+	async function downloadOutput() {
+		if (!videoLink) return;
+
 		setStatusMessage("Working some magic...");
 		let res;
 		try {
@@ -40,18 +42,16 @@ export function Download() {
 		a.click();
 		a.remove();
 		setStatusMessage("✅ Check your downloads!");
-	};
+	}
 
 	return (
 		<div className="flex flex-col gap-y-4">
-			{!(hasError || statusMessage) && (
-				<div className="flex justify-between">
-					{/* Video Thumbnail */}
-					<img src="" />
-
-					<button onClick={downloadOutput}>Download</button>
-				</div>
-			)}
+			<button
+				onClick={downloadOutput}
+				className="bg-neutral-50 text-neutral-950 px-4 py-2 rounded-md"
+			>
+				Download
+			</button>
 			<span>{statusMessage}</span>
 		</div>
 	);

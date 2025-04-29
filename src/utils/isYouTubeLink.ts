@@ -8,11 +8,10 @@ const youtubeURLSchema = z
 		"Invalid YouTube URL"
 	);
 
-export function validateYouTubeLink(youtubeURL: string) {
+export function isYouTubeLink(youtubeURL: string) {
 	const isValidURL = youtubeURLSchema.safeParse(youtubeURL);
 	if (!isValidURL.success) {
-		return isValidURL.error.errors[0].message;
-	} else {
-		return "";
+		return { ok: false, err: isValidURL.error.errors[0].message };
 	}
+	return { ok: true, err: "" };
 }
