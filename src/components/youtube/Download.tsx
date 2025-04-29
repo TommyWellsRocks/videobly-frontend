@@ -1,18 +1,14 @@
 "use client";
 
 import { useYouTube } from "@/hooks/useYouTube";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function Download() {
 	const format = useYouTube((state) => state.format);
 	const resolution = useYouTube((state) => state.resolution);
+	const formatOptions = useYouTube((state) => state.availableFormats);
 	const videoLink = useYouTube((state) => state.link);
-	const errorMessage = useYouTube((state) => state.errorMessage);
 	const [statusMessage, setStatusMessage] = useState("");
-
-	useEffect(() => {
-		setStatusMessage("");
-	}, [videoLink]);
 
 	async function downloadOutput() {
 		if (!videoLink) return;
@@ -44,15 +40,16 @@ export function Download() {
 		setStatusMessage("✅ Check your downloads!");
 	}
 
-	return (
-		<div className="flex flex-col gap-y-4">
-			<button
-				onClick={downloadOutput}
-				className="bg-neutral-50 text-neutral-950 px-4 py-2 rounded-md"
-			>
-				Download
-			</button>
-			<span>{statusMessage}</span>
-		</div>
-	);
+	if (formatOptions.length)
+		return (
+			<div className="flex flex-col gap-y-4">
+				<button
+					onClick={downloadOutput}
+					className="bg-neutral-50 text-neutral-950 px-4 py-2 rounded-md"
+				>
+					Download
+				</button>
+				<span>{statusMessage}</span>
+			</div>
+		);
 }
