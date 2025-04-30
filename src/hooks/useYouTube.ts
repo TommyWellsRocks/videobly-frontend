@@ -54,12 +54,21 @@ export const useYouTube = create<YouTubeState>((set, get) => ({
 		// Get Output Options
 		try {
 			const res = await fetch(`http://localhost:8000/api/v1/youtube?url=${link}`);
-			const { availableFormats, availableResolutions } = await res.json();
+			const {
+				availableFormats,
+				availableResolutions,
+				detail: errorMessage,
+			} = await res.json();
+			if (!res.ok) throw new Error(errorMessage);
 			set((state) => ({ ...state, availableFormats, availableResolutions }));
-		} catch (err: any) {
+		} catch (err: unknown) {
+			let errorMessage = "Error fetching preview.";
+			if (err instanceof Error) {
+				errorMessage = err.message;
+			}
 			console.error(err);
-			const errorMessage = "Error fetching formats and resolutions";
-			set((state) => ({ ...state, errorMessage }));
+			console.error(errorMessage);
+			set((state) => ({ ...state, errorMessage: errorMessage }));
 		}
 	},
 }));
