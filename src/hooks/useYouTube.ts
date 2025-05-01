@@ -64,7 +64,14 @@ export const useYouTube = create<YouTubeState>((set, get) => ({
 				detail: errorMessage,
 			} = await res.json();
 			if (!res.ok) throw new Error(errorMessage);
-			set((state) => ({ ...state, thumbnailURL, availableFormats, availableResolutions }));
+			set((state) => ({
+				...state,
+				thumbnailURL,
+				availableFormats,
+				format: availableFormats.at(-1),
+				availableResolutions,
+				resolution: availableResolutions.at(-1),
+			}));
 		} catch (err: unknown) {
 			let errorMessage = "Error fetching preview.";
 			if (err instanceof Error) {

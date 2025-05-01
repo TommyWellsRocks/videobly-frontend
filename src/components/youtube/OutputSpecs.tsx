@@ -4,8 +4,8 @@ import { useYouTube } from "@/hooks/useYouTube";
 
 export function OutputSpecs() {
 	const formatOptions = useYouTube((state) => state.availableFormats);
-	const resolutionOptions = useYouTube((state) => state.availableResolutions);
-	if (formatOptions.length || resolutionOptions.length)
+
+	if (formatOptions.length)
 		return (
 			<div className="flex gap-x-5">
 				<Format />
