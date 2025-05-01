@@ -7,6 +7,7 @@ interface YouTubeState {
 	link: string;
 	availableFormats: string[];
 	availableResolutions: string[];
+	thumbnailURL: string;
 	errorMessage: string;
 	format: string;
 	resolution: string;
@@ -22,6 +23,7 @@ export const useYouTube = create<YouTubeState>((set, get) => ({
 	link: "",
 	availableFormats: [],
 	availableResolutions: [],
+	thumbnailURL: "",
 	errorMessage: "",
 	format: "",
 	resolution: "",
@@ -46,6 +48,7 @@ export const useYouTube = create<YouTubeState>((set, get) => ({
 			...state,
 			availableFormats: [],
 			availableResolutions: [],
+			thumbnailURL: "",
 			errorMessage: "",
 			format: "",
 			resolution: "",
@@ -57,10 +60,11 @@ export const useYouTube = create<YouTubeState>((set, get) => ({
 			const {
 				availableFormats,
 				availableResolutions,
+				thumbnailURL,
 				detail: errorMessage,
 			} = await res.json();
 			if (!res.ok) throw new Error(errorMessage);
-			set((state) => ({ ...state, availableFormats, availableResolutions }));
+			set((state) => ({ ...state, thumbnailURL, availableFormats, availableResolutions }));
 		} catch (err: unknown) {
 			let errorMessage = "Error fetching preview.";
 			if (err instanceof Error) {
