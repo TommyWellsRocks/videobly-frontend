@@ -9,12 +9,12 @@ export function VideoInput() {
 	const getPreview = useYouTube.getState().getPreview;
 
 	return (
-		<div className="flex items-center rounded-md outline-2 outline-neutral-200">
+		<div className="flex items-center rounded-md outline-2 outline-neutral-200 w-full">
 			<input
 				value={link}
 				onChange={(e) => setLink(e.currentTarget.value)}
 				placeholder="https://www.youtube.com/watch?v=6f0T6UV-HiI"
-				className="w-full p-3"
+				className="w-full p-3 placeholder:text-neutral-300 outline-0 bg-neutral-100"
 			/>
 			<button
 				onClick={() => getPreview()}

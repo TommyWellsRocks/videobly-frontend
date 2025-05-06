@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
+import { Inter } from "next/font/google";
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+import { Header } from "@/components/layout/header/Header";
+
+const inter = Inter({
+	variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -28,12 +24,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased [&_input]:focus:outline-neutral-700 [&_select]:focus:outline-neutral-700 [&_button]:focus:outline-neutral-700`}
+				className={`${inter.variable} antialiased bg-neutral-50 [&_input]:focus:outline-neutral-500 [&_select]:focus:outline-neutral-500 [&_button]:focus:outline-neutral-500 grid-background`}
 			>
-				<div className="mx-10">
+				<div className="mx-10 relative h-full z-10">
 					<Header />
 					{children}
-					<Footer />
 				</div>
 			</body>
 		</html>

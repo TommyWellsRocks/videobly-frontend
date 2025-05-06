@@ -1,0 +1,14 @@
+import Link from "next/link";
+import { Nav } from "./Nav";
+
+export function Header() {
+	return (
+		<header className="absolute left-0 right-0 top-8 flex items-center justify-between py-4 px-8 rounded-2xl border-neutral-50 bg-neutral-100 border-2 drop-shadow-xl z-[999]">
+			<Link href="/" className="text-3xl font-semibold">
+				Videobly
+			</Link>
+
+			<Nav />
+		</header>
+	);
+}
