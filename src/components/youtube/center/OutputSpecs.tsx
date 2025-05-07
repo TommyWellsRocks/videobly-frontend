@@ -7,7 +7,7 @@ export function OutputSpecs() {
 
 	if (formatOptions.length)
 		return (
-			<div className="flex gap-x-5">
+			<div className="flex flex-wrap gap-x-5 gap-y-2">
 				<Format />
 
 				<Resolution />
@@ -23,14 +23,17 @@ export function Format() {
 
 	return (
 		<div className="flex gap-x-2">
-			<span>Format:</span>
-			<select value={format} onChange={(e) => setFormat(e.target.value)}>
-				{formatOptions.map((option, key) => (
-					<option value={option.toLowerCase()} key={key}>
-						{option}
-					</option>
-				))}
-			</select>
+			{formatOptions.map((option, key) => (
+				<button
+					key={key}
+					onClick={() => setFormat(option)}
+					className={`rounded-full ${
+						format === option ? "bg-neutral-950 text-neutral-50" : "bg-neutral-200"
+					} py-2 px-4 cursor-pointer shadow-md border border-neutral-300`}
+				>
+					{option}
+				</button>
+			))}
 		</div>
 	);
 }
@@ -42,17 +45,22 @@ export function Resolution() {
 
 	const setResolution = useYouTube.getState().setResolution;
 
-	if (format === "av" || format === "video")
+	if (format === "AV" || format === "Video")
 		return (
 			<div className="flex gap-x-2">
-				<span>Resolution:</span>
-				<select value={resolution} onChange={(e) => setResolution(e.target.value)}>
-					{resolutionOptions.map((option, key) => (
-						<option value={option.toLowerCase()} key={key}>
-							{option}
-						</option>
-					))}
-				</select>
+				{resolutionOptions.map((option, key) => (
+					<button
+						key={key}
+						onClick={() => setResolution(option)}
+						className={`rounded-full ${
+							resolution === option
+								? "bg-neutral-950 text-neutral-50"
+								: "bg-neutral-200"
+						} py-2 px-4 cursor-pointer shadow-md border border-neutral-300`}
+					>
+						{option}
+					</button>
+				))}
 			</div>
 		);
 }

@@ -6,7 +6,7 @@ export default function YouTube() {
 	return (
 		<>
 			<GridBackground />
-			<main className="relative flex flex-col h-svh justify-center items-center">
+			<main className="relative flex flex-col min-h-svh py-30 justify-center items-center">
 				<Center />
 				<Footer />
 			</main>

@@ -6,15 +6,18 @@ import { Download } from "@/components/youtube/center/Download";
 
 export function Center() {
 	return (
-		<section className="flex flex-col w-full max-w-[600px] justify-center items-center gap-y-8 py-30 h-full text-center">
+		<section className="flex flex-col w-full max-w-[600px] justify-center items-center gap-y-8 h-full text-center">
 			<span className="text-6xl">Download YouTube videos in seconds</span>
 
 			<span className="text-xl text-neutral-500">
 				Introducing the YouTube downloader that actually works right.
 			</span>
-			<VideoInput />
-			<OutputSpecs />
-			<ErrorMessage />
+
+			<div className="flex flex-col gap-y-4 w-full">
+				<VideoInput />
+				<OutputSpecs />
+				<ErrorMessage />
+			</div>
 
 			<Thumbnail />
 			<Download />

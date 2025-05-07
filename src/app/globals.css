@@ -9,7 +9,15 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-a:hover {
+main {
+	z-index: 10;
+}
+
+button {
+	cursor: pointer;
+}
+
+a {
 	cursor: pointer;
 }
 
@@ -27,4 +35,5 @@ a:hover {
 		linear-gradient(rgba(44, 44, 44, 0.082) 1px, transparent 1px);
 	background-size: 8vw 8vw;
 	overflow: clip;
+	z-index: 1;
 }

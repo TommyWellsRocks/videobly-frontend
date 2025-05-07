@@ -9,7 +9,7 @@ export function VideoInput() {
 	const getPreview = useYouTube.getState().getPreview;
 
 	return (
-		<div className="flex items-center rounded-md outline-2 outline-neutral-200 w-full">
+		<div className="flex items-center rounded-md outline-2 outline-neutral-200 w-full shadow-md">
 			<input
 				value={link}
 				onChange={(e) => setLink(e.currentTarget.value)}
@@ -18,7 +18,7 @@ export function VideoInput() {
 			/>
 			<button
 				onClick={() => getPreview()}
-				className="bg-neutral-200 text-neutral-950 px-4 py-3 hover:cursor-pointer hover:bg-neutral-400"
+				className="bg-neutral-200 text-neutral-950 px-4 py-3 cursor-pointer hover:bg-neutral-400"
 			>
 				<Search />
 			</button>
