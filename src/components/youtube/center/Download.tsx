@@ -45,7 +45,7 @@ export function Download() {
 			<div className="flex flex-col gap-y-4">
 				<button
 					onClick={downloadOutput}
-					className="bg-neutral-50 text-neutral-950 px-4 py-2 rounded-md shadow-xl cursor-pointer"
+					className="bg-brandWhite text-brandDark px-4 py-2 rounded-md shadow-xl cursor-pointer"
 				>
 					Download
 				</button>

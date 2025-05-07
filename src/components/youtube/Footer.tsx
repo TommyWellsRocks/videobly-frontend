@@ -4,7 +4,7 @@ import Link from "next/link";
 export function Footer() {
 	const year = new Date().getFullYear();
 	return (
-		<section className="absolute bottom-10 left-0 right-0 flex items-center justify-between w-full text-neutral-400">
+		<section className="absolute bottom-10 left-0 right-0 flex items-center justify-between w-full text-brandDark-700">
 			<div className="flex gap-x-8 items-center">
 				<span>© {year} Videobly. All Rights Reserved.</span>
 				<Link href="/">Terms of Use</Link>

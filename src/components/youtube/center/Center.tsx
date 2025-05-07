@@ -9,7 +9,7 @@ export function Center() {
 		<section className="flex flex-col w-full max-w-[600px] justify-center items-center gap-y-8 h-full text-center">
 			<span className="text-6xl">Download YouTube videos in seconds</span>
 
-			<span className="text-xl text-neutral-500">
+			<span className="text-xl text-brandDark-500">
 				Introducing the YouTube downloader that actually works right.
 			</span>
 

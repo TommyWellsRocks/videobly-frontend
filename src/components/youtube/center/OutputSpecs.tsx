@@ -28,8 +28,8 @@ export function Format() {
 					key={key}
 					onClick={() => setFormat(option)}
 					className={`rounded-full ${
-						format === option ? "bg-neutral-950 text-neutral-50" : "bg-neutral-200"
-					} py-2 px-4 cursor-pointer shadow-md border border-neutral-300`}
+						format === option ? "bg-brandDark text-brandWhite" : "bg-brandWhite"
+					} py-2 px-4 cursor-pointer shadow-md border border-brandDark-200`}
 				>
 					{option}
 				</button>
@@ -53,10 +53,8 @@ export function Resolution() {
 						key={key}
 						onClick={() => setResolution(option)}
 						className={`rounded-full ${
-							resolution === option
-								? "bg-neutral-950 text-neutral-50"
-								: "bg-neutral-200"
-						} py-2 px-4 cursor-pointer shadow-md border border-neutral-300`}
+							resolution === option ? "bg-brandDark text-brandWhite" : "bg-brandWhite"
+						} py-2 px-4 cursor-pointer shadow-md border border-brandDark-200`}
 					>
 						{option}
 					</button>

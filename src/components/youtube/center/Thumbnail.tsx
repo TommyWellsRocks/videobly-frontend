@@ -16,7 +16,7 @@ export function Thumbnail() {
 					alt="Thumbnail"
 					width={700}
 					height={500}
-					className="aspect-video object-cover rounded-lg border-3 border-neutral-100 shadow-2xl shadow-neutral-500"
+					className="aspect-video object-cover rounded-lg border-3 border-brandWhite shadow-2xl shadow-brandDark-500"
 				/>
 			</Link>
 		);
