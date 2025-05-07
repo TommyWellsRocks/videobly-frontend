@@ -24,9 +24,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.variable} antialiased bg-neutral-50 [&_input]:focus:outline-neutral-500 [&_select]:focus:outline-neutral-500 [&_button]:focus:outline-neutral-500 grid-background`}
+				className={`${inter.variable} antialiased bg-neutral-50 [&_input]:focus:outline-neutral-500 [&_select]:focus:outline-neutral-500 [&_button]:focus:outline-neutral-500 mx-10 relative`}
 			>
-				<div className="mx-10 relative h-full z-10">
+				<div className="absolute left-0 right-0 bottom-0 top-0 -mx-10 gradient-background"></div>
+
+				<div className="z-10">
 					<Header />
 					{children}
 				</div>
