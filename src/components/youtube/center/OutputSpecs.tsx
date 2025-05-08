@@ -45,7 +45,7 @@ export function Resolution() {
 
 	const setResolution = useYouTube.getState().setResolution;
 
-	if (format === "AV" || format === "Video")
+	if (format && format.toLowerCase() !== "audio")
 		return (
 			<div className="flex gap-x-2">
 				{resolutionOptions.map((option, key) => (
