@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/header/Header";
 
 const inter = Inter({
 	variable: "--font-inter",
+	subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
