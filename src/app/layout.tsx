@@ -12,9 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-	title: "MyTube Video Stuff",
-	description:
-		"YouTube video downloader. Download YouTube videos with the highest quality video, audio, or both.",
+	title: "Videobly",
+	description: "Download YouTube videos with the highest quality video, audio, or both.",
 };
 
 export default function RootLayout({
